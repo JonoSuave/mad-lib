@@ -7,17 +7,17 @@
 
 	<h1>Let's Build a Random Story</h1>
 	<div>
-		Enter a Noun:<input type="text" name="noun" placeholder="ex: girraffe, homeboy, Sultan of Swat" id="noun">
-		Not feeling Creative? Let us auto generate<input type="radio" name="default-list"><br>
+		Enter a Noun:<input type="text" name="noun" placeholder="ex: girraffe, homeboy, Sultan of Swat" id="noun"	onkeydown="enterKeyPressed(event)">
+		Not feeling Creative? Let us auto generate<input type="radio"	name="default-list"	><br>
 		<select id="noun-possibilities"></select><br>
 
-		Enter an Adverb:<input type="text" name="adverb" placeholder="ex: hurriedly, cautiously, slowly" id="adverb">
-		Not feeling Creative? Let us auto generate<input type="radio" name="default-list"><br>
+		Enter an Adverb:<input type="text" name="adverb" placeholder="ex: hurriedly, cautiously, slowly" id="adverb"	onkeydown="enterKeyPressed(event)">
+		Not feeling Creative? Let us auto generate<input type="radio"	name="default-list"	><br>
 		<select id="adverb-possibilities"></select><br>
 
-		Enter an Adjective:<input type="text" name="adjective" placeholder="ex: green, short, hunky" id="adjective">
-		Not feeling Creative? Let us auto generate<input type="radio" name="default-list"><br>
-		<select id="adjective-possibilites"></select><br>
+		Enter an Adjective:<input type="text" name="adjective" placeholder="ex: green, short, hunky" id="adjective"		onkeydown="enterKeyPressed(event)">
+		Not feeling Creative? Let us auto generate<input type="radio"	name="default-list"	><br>
+		<select id="adjective-possibilities"></select><br>
 
 		Choose Story Type:<select></select><br>
 		<button onclick="storyTime()">Create a Story</button>
