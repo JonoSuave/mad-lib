@@ -334,7 +334,7 @@ function storyTime(){
 	fillArray(newNounArray,nounInput,nounPossibilities,nounSelector);
 	fillArray(newAdverbArray,newAdverbArray,adverbPossibilities,adverbSelector);
 	fillArray(newAdjArray,newAdjArray,adjectivePossibilities,adjSelector);
-
+}
 function fillArray(newWordArray,newInput,wordPossArr,wordSelector){
 	while(newWordArray.length < 5){
 		var randomNumber = Math.floor(Math.random()*54);
@@ -347,35 +347,35 @@ function fillArray(newWordArray,newInput,wordPossArr,wordSelector){
 }
 
 
-	newNounArray = nounInput.value.split(',');
-	while(newNounArray.length < 5){
-		var randomNumberOne = Math.floor(Math.random()*54);
-		newNounArray.push(nounPossibilities[randomNumberOne]);
-		var nounOption = document.createElement("OPTION"); 
-		nounOption.textContent = nounPossibilities[randomNumberOne];
-		nounOption.value = nounPossibilities[randomNumberOne];
-		nounSelector.appendChild(nounOption);		
-	}
+	// newNounArray = nounInput.value.split(',');
+	// while(newNounArray.length < 5){
+	// 	var randomNumberOne = Math.floor(Math.random()*54);
+	// 	newNounArray.push(nounPossibilities[randomNumberOne]);
+	// 	var nounOption = document.createElement("OPTION"); 
+	// 	nounOption.textContent = nounPossibilities[randomNumberOne];
+	// 	nounOption.value = nounPossibilities[randomNumberOne];
+	// 	nounSelector.appendChild(nounOption);		
+	// }
 
-	newAdverbArray = adverbInput.value.split(',');
-	while(newAdverbArray.length < 5){
-		var randomNumberTwo = Math.floor(Math.random()*110);
-		newAdverbArray.push(adverbPossibilities[randomNumberTwo]);
-		var adverbOption = document.createElement("OPTION");
-		adverbOption.textContent = adverbPossibilities[randomNumberTwo];
-		adverbOption.value = adverbPossibilities[randomNumberTwo];
-		adverbSelector.appendChild(adverbOption);	
-	}
+	// newAdverbArray = adverbInput.value.split(',');
+	// while(newAdverbArray.length < 5){
+	// 	var randomNumberTwo = Math.floor(Math.random()*110);
+	// 	newAdverbArray.push(adverbPossibilities[randomNumberTwo]);
+	// 	var adverbOption = document.createElement("OPTION");
+	// 	adverbOption.textContent = adverbPossibilities[randomNumberTwo];
+	// 	adverbOption.value = adverbPossibilities[randomNumberTwo];
+	// 	adverbSelector.appendChild(adverbOption);	
+	// }
 
-	newAdjArray = adjInput.value.split(',');
-	while(newAdjArray.length < 5){
-		var randomNumberThree = Math.floor(Math.random()*135);
-		newAdjArray.push(adjectivePossibilities[randomNumberThree]);
-		var adjOption = document.createElement("OPTION");
-		adjOption.textContent = adjectivePossibilities[randomNumberThree];
-		adjOption.value = adjectivePossibilities[randomNumberThree];
-		adjSelector.appendChild(adjOption);
-	}
+	// newAdjArray = adjInput.value.split(',');
+	// while(newAdjArray.length < 5){
+	// 	var randomNumberThree = Math.floor(Math.random()*135);
+	// 	newAdjArray.push(adjectivePossibilities[randomNumberThree]);
+	// 	var adjOption = document.createElement("OPTION");
+	// 	adjOption.textContent = adjectivePossibilities[randomNumberThree];
+	// 	adjOption.value = adjectivePossibilities[randomNumberThree];
+	// 	adjSelector.appendChild(adjOption);
+	// }
 	// if(nounInput.value.trim() === ""){
 	// 	for(i = 0; i < 4; i++){
 	// 		var randomNumberOne = Math.floor(Math.random()*54);
@@ -420,11 +420,7 @@ function fillArray(newWordArray,newInput,wordPossArr,wordSelector){
 	// 		adjSelector.appendChild(adjOption);
 	// 	}
 	// }
-	
-	
-	
 
-}
 
 function enterKeyPressed(event){
 	var keyPressed = event.keyCode;
