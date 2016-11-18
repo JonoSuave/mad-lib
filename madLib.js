@@ -319,15 +319,33 @@ var adjectivePossibilities = [
 ];
 
 function storyTime(){
-	var newNounArray = [];
-	var newAdverbArray = [];
-	var newAdjArray = [];
-	nounInput = document.getElementById("noun");
-	adverbInput = document.getElementById("adverb");
-	adjInput = document.getElementById("adjective");
-	nounSelector = document.getElementById("noun-possibilities");
-	adverbSelector = document.getElementById("adverb-possibilities");
-	adjSelector = document.getElementById("adjective-possibilities");
+	var nounInput = document.getElementById("noun");
+	var adverbInput = document.getElementById("adverb");
+	var adjInput = document.getElementById("adjective");
+
+	var newNounArray = nounInput.value.split(',');
+	var newAdverbArray = adverbInput.value.split(',');
+	var newAdjArray = adjInput.value.split(',');
+
+	var nounSelector = document.getElementById("noun-possibilities");
+	var adverbSelector = document.getElementById("adverb-possibilities");
+	var adjSelector = document.getElementById("adjective-possibilities");
+
+	fillArray(newNounArray,nounInput,nounPossibilities,nounSelector);
+	fillArray(newAdverbArray,newAdverbArray,adverbPossibilities,adverbSelector);
+	fillArray(newAdjArray,newAdjArray,adjectivePossibilities,adjSelector);
+
+function fillArray(newWordArray,newInput,wordPossArr,wordSelector){
+	while(newWordArray.length < 5){
+		var randomNumber = Math.floor(Math.random()*54);
+		newWordArray.push(nounPossibilities[randomNumber]);
+		var wordOption = document.createElement("OPTION"); 
+		wordOption.textContent = nounPossibilities[randomNumber];
+		wordOption.value = nounPossibilities[randomNumber];
+		wordSelector.appendChild(wordOption);		
+	}
+}
+
 
 	newNounArray = nounInput.value.split(',');
 	while(newNounArray.length < 5){
