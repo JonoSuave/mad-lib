@@ -25,7 +25,6 @@ var nounPossibilities = [
 	'work',
 	'government',
 	'number',
-	'night',
 	'point',
 	'home',
 	'water',
@@ -318,22 +317,129 @@ var adjectivePossibilities = [
 	'tiny'
 ];
 
+var verbPossibilities = [
+'be',
+'have',
+'do',
+'say',
+'go',
+'can',
+'get',
+'would',
+'make',
+'know',
+'will',
+'think',
+'take',
+'see',
+'come',
+'could',
+'want',
+'look',
+'use',
+'find',
+'give',
+'tell',
+'work',
+'may',
+'should',
+'call',
+'try',
+'ask',
+'need',
+'feel',
+'become',
+'leave',
+'put',
+'mean',
+
+'keep',
+'let',
+'begin',
+'seem',
+'help',
+'talk',
+'turn',
+'start',
+'might',
+'show',
+'hear',
+'play',
+'run',
+'move',
+'like',
+'live',
+'believe',
+'hold',
+'bring',
+'happen',
+'must',
+'write',
+'provide',
+'sit',
+'stand',
+'lose',
+'pay',
+'meet',
+'include',
+'continue',
+'set',
+'learn',
+'change',
+'lead'
+]
+
 function storyTime(){
+	var storyContainer = document.getElementById("story-container");
+	var storyName = document.getElementById("story-options").value;
+
 	var nounInput = document.getElementById("noun");
 	var adverbInput = document.getElementById("adverb");
 	var adjInput = document.getElementById("adjective");
+	var verbInput = document.getElementById("verb");
 
-	var newNounArray = nounInput.value.split(',');
-	var newAdverbArray = adverbInput.value.split(',');
-	var newAdjArray = adjInput.value.split(',');
+	var newNounArray = nounInput.value.trim() === ''? []: nounInput.value.split(',');
+	var newAdverbArray = adverbInput.value.trim() === ''? []: adverbInput.value.split(',');
+	var newAdjArray = adjInput.value.trim() === ''? []: adjInput.value.split(',');
+	var newVerbArray = verbInput.value.trim() === ''? []: verbInput.value.split(',');
 
 	var nounSelector = document.getElementById("noun-possibilities");
 	var adverbSelector = document.getElementById("adverb-possibilities");
 	var adjSelector = document.getElementById("adjective-possibilities");
+	var verbSelector = document.getElementById("verb-possibilities");
 
 	fillArray(newNounArray,nounInput,nounPossibilities,nounSelector);
-	fillArray(newAdverbArray,newAdverbArray,adverbPossibilities,adverbSelector);
-	fillArray(newAdjArray,newAdjArray,adjectivePossibilities,adjSelector);
+	fillArray(newAdverbArray,adverbInput,adverbPossibilities,adverbSelector);
+	fillArray(newAdjArray,adjInput,adjectivePossibilities,adjSelector);
+	fillArray(newVerbArray,verbInput,verbPossibilities,verbSelector);
+
+	// var story = "Every Christmas we #verb0 to a ...";
+	
+	// for(var i = 0; i < 4; i++){
+	// 	story.replace('#verb' + i,verbs[i]);
+	// 	story.replace('#noun' + i, nouns[i]);
+	// }
+
+	if(storyName === 'Christmas Tree'){
+		storyContainer.innerHTML = '';
+		var storyDiv = document.createElement("div");
+		var christmasStory = "Every Christmas we  (Verb0)  to a   (Adjectives0)   tree farm far away. This is not just any   (Adjectives1)   tree farm. My dad and I    (Verb1)   onto the   (noun0)   to    (Verb2)   for the perfect   (noun1)  .  Some people like them   (Adjectives2)  , but I prefer them   (Adjectives3)  . After  searching for hours I usually   (adverb0)   exclaim \"Dad! The perfect tree is over   there!\" Off we    (Verb3)   to get the tree. The problem is we always forget the  (noun2)   and the  (noun3)  . But at the end of the day we    (adverb1)   get the tree and head home    (adverb2)  . \"I wish it was Christmas all year round\"  I    (adverb3)   think to myself."
+		for(var i=0; i<4; i++){
+			christmasStory = christmasStory.replace('Verb' + i,newVerbArray[i]);
+			christmasStory = christmasStory.replace('Adjectives' + i,newAdjArray[i]);
+			christmasStory = christmasStory.replace('adverb' + i, newAdverbArray[i]);
+			christmasStory = christmasStory.replace('noun' + i,newNounArray[i]);
+		}
+		storyDiv.innerHTML = christmasStory;
+		storyContainer.appendChild(storyDiv);
+	}
+	else if(storyName === 'Shopping'){
+		storyContainer.innerHTML = '';
+		var storyDiv = document.createElement("div");
+		var text = document.createTextNode("Shopping:\n" + "Today I went shopping. When I arrived at the store I saw a " + newAdjArray[1] + " "  + newNounArray[1] + ", who upon noticing me " +  newAdverbArray[1] + " said \"I need to " + newVerbArray[1] + "\". \"Well, that was " + newAdjArray[1] + " " + "\" I thought to myself and walked in the store. The store had rearranged its inventory, so I felt " + newAdverbArray[1] + " lost. I   walked up to store clerk and said " + newAdverbArray[2] +  " \"I am looking for a " + newAdjArray[2] + " " + newNounArray[1] + " that doesn\’t " + newVerbArray[1] + " as often as the last one I had.\" The store clerk looked at me with a " + newAdjArray[3] + " look in his eye and said, \"What you are looking for can be found by the " + newNounArray[2] + ", if you see a " + newNounArray[3] + " that " + newAdjArray[2] + " can " + newVerbArray[2] + ", then you've gone too far.\" As I tried to understand his directions, I thought to myself, \"I should have just ordered it on amazon.com, Their products seem to " + newVerbArray[3] + " the perfect amount\"");
+		storyDiv.appendChild(text);
+		document.body.appendChild(storyDiv);
+	}
 }
 function fillArray(newWordArray,newInput,wordPossArr,wordSelector){
 	while(newWordArray.length < 5){
@@ -346,86 +452,20 @@ function fillArray(newWordArray,newInput,wordPossArr,wordSelector){
 	}
 }
 
-
-	// newNounArray = nounInput.value.split(',');
-	// while(newNounArray.length < 5){
-	// 	var randomNumberOne = Math.floor(Math.random()*54);
-	// 	newNounArray.push(nounPossibilities[randomNumberOne]);
-	// 	var nounOption = document.createElement("OPTION"); 
-	// 	nounOption.textContent = nounPossibilities[randomNumberOne];
-	// 	nounOption.value = nounPossibilities[randomNumberOne];
-	// 	nounSelector.appendChild(nounOption);		
-	// }
-
-	// newAdverbArray = adverbInput.value.split(',');
-	// while(newAdverbArray.length < 5){
-	// 	var randomNumberTwo = Math.floor(Math.random()*110);
-	// 	newAdverbArray.push(adverbPossibilities[randomNumberTwo]);
-	// 	var adverbOption = document.createElement("OPTION");
-	// 	adverbOption.textContent = adverbPossibilities[randomNumberTwo];
-	// 	adverbOption.value = adverbPossibilities[randomNumberTwo];
-	// 	adverbSelector.appendChild(adverbOption);	
-	// }
-
-	// newAdjArray = adjInput.value.split(',');
-	// while(newAdjArray.length < 5){
-	// 	var randomNumberThree = Math.floor(Math.random()*135);
-	// 	newAdjArray.push(adjectivePossibilities[randomNumberThree]);
-	// 	var adjOption = document.createElement("OPTION");
-	// 	adjOption.textContent = adjectivePossibilities[randomNumberThree];
-	// 	adjOption.value = adjectivePossibilities[randomNumberThree];
-	// 	adjSelector.appendChild(adjOption);
-	// }
-	// if(nounInput.value.trim() === ""){
-	// 	for(i = 0; i < 4; i++){
-	// 		var randomNumberOne = Math.floor(Math.random()*54);
-	// 		var newNoun = nounPossibilities[randomNumberOne];
-	// 		var nounOption = document.createElement("OPTION"); 
-	// 		nounOption.textContent = newNoun;
-	// 		nounOption.value = newNoun;
-	// 		nounSelector.appendChild(nounOption);
-	// 	}
-	// }
-	// else{
-	// 	// Two for loops: 1st creates newNounArray() 2nd loops over newNounArray(), creates elements that we can add to the the nounSelector
-	// 	// by creating option elements
-	// 	// Afterward do the DRY Method via functions. This will assist in shortening code. Will need to know how to pass through parameters
-	// 	newNounArray = nounInput.value.split(',');
-	// 	for(i = 0; newNounArray.length < 4; i++){
-	// 		var randomNumberOne = Math.floor(Math.random()*54);
-	// 		newNounArray.push(nounPossibilities[randomNumberOne]);
-	// 		var nounOption = document.createElement("OPTION"); 
-	// 		nounOption.textContent = nounPossibilities[randomNumberOne];
-	// 		nounOption.value = nounPossibilities[randomNumberOne];
-	// 		nounSelector.appendChild(nounOption);
-	// 	}
-	// }
-	// if(adverbInput.value.trim() === ""){
-	// 	for(i = 0; i<4; i++){
-	// 		var randomNumberTwo = Math.floor(Math.random()*110);
-	// 		var newAdverb = adverbPossibilities[randomNumberTwo];
-	// 		var adverbOption = document.createElement("OPTION");
-	// 		adverbOption.textContent = newAdverb;
-	// 		adverbOption.value = newAdverb;
-	// 		adverbSelector.appendChild(adverbOption);
-	// 	}
-	// }
-	// if (adjInput.value.trim() === "") {
-	// 	for(i = 0; i<4; i++){
-	// 		var randomNumberThree = Math.floor(Math.random()*135);
-	// 		var newAdjective = adjectivePossibilities[randomNumberThree];
-	// 		var adjOption = document.createElement("OPTION");
-	// 		adjOption.textContent = newAdjective;
-	// 		adjOption.value = newAdjective;
-	// 		adjSelector.appendChild(adjOption);
-	// 	}
-	// }
-
-
 function enterKeyPressed(event){
 	var keyPressed = event.keyCode;
 	if (keyPressed === 13) {
 		storyTime();
 	}
 }
+
+function removeStory(){
+	var storyName = document.getElementById("story-options").value
+	index = inexOf(storyName);
+	// add stories upon creation to an array, so you can remove them (maybe)
+}
+
+
+
+
 

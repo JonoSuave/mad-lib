@@ -19,11 +19,26 @@
 		Not feeling Creative? Let us auto generate<input type="radio"	name="default-list"	><br>
 		<select id="adjective-possibilities"></select><br>
 
-		Choose Story Type:<select></select><br>
-		<button onclick="storyTime()">Create a Story</button>
+		Enter a Verb:<input type="text" name="verb"	placeholder="ex: run, jump, inudate, etc"	id="verb"	onkeydown="enterKeyPressed(event)">
+		Not feeling Creative? Let's auto generate<input type="radio" name="default-list"><br>
+		<select id="verb-possibilities"></select><br>
 
+		Choose Story Type:<select id="story-options">
+			<option id="christmas-tree"	class="story">Christmas Tree</option>
+			<option id="shopping"	class="story">Shopping</option>
+			<option id="brainstorm"	class="story">Brainstorm</option>
+		</select><br>
+
+		<button onclick="storyTime()">Create a Story</button>
+		<button onclick="removeStory">Remove Story</button>
+
+		<div id="story-container">
+			
+		</div>
 
 	</div>
+
+
 
 	<script type="text/javascript" src="madLib.js"></script>
 
